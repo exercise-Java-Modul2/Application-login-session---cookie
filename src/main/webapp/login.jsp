@@ -12,6 +12,24 @@
     <title>Login Page</title>
 </head>
 <body>
+<%
+    Cookie[] listCookie = request.getCookies();
+    String user = "";
+    String pass = "";
+    int count = 0;
+    if (listCookie != null) {
+        while (count < listCookie.length) {
+            if (listCookie[count].getName().equals("user")) {
+                user = listCookie[count].getValue();
+            }
+            if (listCookie[count].getName().equals("pass")) {
+                pass = listCookie[count].getValue();
+            }
+            count++;
+        }
+    }
+%>
+
 <p>
     <c:if test='${requestScope["error"] != null}'>
         <span>${requestScope["error"]}</span>
